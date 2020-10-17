@@ -12,44 +12,48 @@ import com.mpetok.mpetok.repository.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 //Service annotation && Controller annoation
 //Megmondja, hogy SINGLETON lesz.
 @Service
 public class StoryService {
 
-    private StoryRepository storyRepository;
-    private BloggerRepository bloggerRepository;
-    
-    @Autowired
-    public void setStoryRepository(StoryRepository storyRepository) {
-        this.storyRepository = storyRepository;
-    }
+  private StoryRepository storyRepository;
 
-    @Autowired
-    public void setBloggerRepository(BloggerRepository bloggerRepository) {
-        this.bloggerRepository = bloggerRepository;
-    }
+  private BloggerRepository bloggerRepository;
 
-	public Iterable<Story> getStories() {
-		return storyRepository.findAll();
-    }
+  @Autowired
+  public void setStoryRepository(StoryRepository storyRepository) {
+    this.storyRepository = storyRepository;
+  }
 
-    public Story getStory(String title){
-        return storyRepository.findByTitle(title);
-    }
-    
-    @PostConstruct
-    public void init(){
-        Blogger blogger = new Blogger("BelsoMate",23);
-        bloggerRepository.save(blogger);
-        Story story = new Story("BelsoCim","BelsoTartalom",new Date(),blogger);
-        storyRepository.save(story);
+  @Autowired
+  public void setBloggerRepository(BloggerRepository bloggerRepository) {
+    this.bloggerRepository = bloggerRepository;
+  }
 
-    }
+  public Iterable<Story> getStories() {
+    return storyRepository.findAll();
+  }
 
-	public Story getSpecificStory(String title) { 
-        return storyRepository.findByTitle(title);
-	}
-    
+  public Story getStory(String title) {
+    return storyRepository.findByTitle(title);
+  }
+
+  @PostConstruct
+  public void init() {
+    Blogger blogger = new Blogger("BelsoMate", 23);
+    bloggerRepository.save(blogger);
+    Story story = new Story("BelsoCim", "BelsoTartalom", new Date(), blogger);
+    storyRepository.save(story);
+
+  }
+
+  public Story getSpecificStory(String title) {
+    return storyRepository.findByTitle(title);
+  }
+
+  public Iterable<Story> getStoriesByBloggerName(String name) {
+    return storyRepository.findAllByBloggerNameIgnoreCaseOrderByPostedDesc(name);
+  }
+
 }

@@ -11,9 +11,8 @@ import org.springframework.stereotype.Repository;
 //ezert felel a repository
 //azert Long->Mert a Story ID - longban van tarolva
 @Repository
-public interface BloggerRepository extends CrudRepository<Blogger,Long>{
-    
-    List<Blogger> findAll();
+public interface BloggerRepository extends CrudRepository<Blogger, Long> {
 
+  List<Blogger> findAll();
 
 }

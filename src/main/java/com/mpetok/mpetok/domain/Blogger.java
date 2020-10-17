@@ -9,44 +9,55 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Blogger {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)   
-    private Long id;
-    private String name;
-    private int age;
-    @OneToMany(mappedBy = "blogger")
-    private List<Story> stories;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", updatable = false, nullable = false)
+  private Long id;
 
-    private Blogger(){
-        //
-    }
+  private String name;
 
-    public Blogger(String name,int age){
-        this.name = name;
-        this.age = age;
-    }
+  private int age;
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setStories(List<Story> stories) {
-        this.stories = stories;
-    }
-    public List<Story> getStories() {
-        return stories;
-    }
-    
+  @JsonBackReference
+  @OneToMany(mappedBy = "blogger")
+  private List<Story> stories;
+
+  private Blogger() {
+    //
+  }
+
+  public Blogger(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setStories(List<Story> stories) {
+    this.stories = stories;
+  }
+
+  public List<Story> getStories() {
+    return stories;
+  }
+
 }

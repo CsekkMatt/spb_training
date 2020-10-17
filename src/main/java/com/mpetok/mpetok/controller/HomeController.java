@@ -1,8 +1,5 @@
 package com.mpetok.mpetok.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mpetok.mpetok.domain.Story;
 import com.mpetok.mpetok.service.StoryService;
 
 @Controller
